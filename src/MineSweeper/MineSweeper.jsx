@@ -2,6 +2,8 @@ import styles from "./MineSweeper.module.css"
 
 function MineSweeper(){
 
+    var lost = false;
+
     let tiles = [];
     for(let i = 0; i < 81; i++){
         tiles[i] = i;        
@@ -67,29 +69,50 @@ function MineSweeper(){
     
     function checkMine(event){
         let mineCount = checkArea(event.target.textContent);
-        if(mines.includes(Number(event.target.textContent))){
-            event.target.style.backgroundColor = "red";
-            event.target.textContent = "💣";
-            event.target.disabled = "true";
-        }else{
-            event.target.disabled = "true";
-            event.target.style.border = "none";
-            event.target.style.color = "white";
-            event.target.textContent = mineCount;
-        }    
+        if(!lost){
+            if(mines.includes(Number(event.target.textContent))){
+                event.target.style.backgroundColor = "red";
+                event.target.textContent = "💣";
+                event.target.disabled = "true";
+                lost = true;
+            }else{
+                event.target.disabled = "true";
+                event.target.style.border = "none";
+                event.target.style.color = "white";
+                event.target.textContent = mineCount;
+            }   
+        } 
     }
+
+    function updateClock(){
+        const startTime = new Date().getTime();
+
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = startTime - now;
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        })
+
+    }
+
 
     return(
 
         <>
             <div className={styles.mainDiv}>
-                <div className={styles.headerDiv}>a</div>
+                <div className={styles.headerDiv}>
+                    <div className={styles.minesDiv}></div>
+                    <div className={styles.statDiv}></div>
+                    <div className={styles.timerDiv}></div>
+                </div>
                 <div className={styles.subDiv}>
                     {tiles.map((obj, index) => (
                     <button key={index} className={styles.tile} onClick={checkMine}>{obj}</button>
                     ))}
                 </div>
-                <div className={styles.footerDiv}>a</div>
+                <div className={styles.footerDiv}>
+                    <button className={styles.resetButton} onClick={() => {window.location.reload(true);}}>Reset</button>
+                </div>
             </div>
         </>
     );
