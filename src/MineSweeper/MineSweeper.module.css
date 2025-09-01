@@ -49,3 +49,30 @@
     font-size: 30px;
 }
 
+.headerDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: cornflowerblue;
+}
+
+.flagsDiv{
+    background-color: rgb(71, 136, 136);
+    width: 30%;
+    height: 70%;
+    margin: 3%;
+}
+
+.statDiv{
+    background-color: rgb(138, 116, 77);
+    width: 30%;
+    height: 70%;
+    margin: 3%;
+}
+
+.timerDiv{
+    background-color: rgb(98, 66, 98);
+    width: 30%;
+    height: 70%;
+    margin: 3%;
+}

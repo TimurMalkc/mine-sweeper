@@ -101,13 +101,13 @@ function MineSweeper(){
         <>
             <div className={styles.mainDiv}>
                 <div className={styles.headerDiv}>
-                    <div className={styles.minesDiv}></div>
-                    <div className={styles.statDiv}></div>
-                    <div className={styles.timerDiv}></div>
+                    <div className={styles.flagsDiv}>a</div>
+                    <div className={styles.statDiv}>b</div>
+                    <div className={styles.timerDiv}>c</div>
                 </div>
                 <div className={styles.subDiv}>
                     {tiles.map((obj, index) => (
-                    <button key={index} className={styles.tile} onClick={checkMine}>{obj}</button>
+                    <button key={index} className={styles.tile} onClick={checkMine} onContextMenu={() => console.log("i")}>{obj}</button>
                     ))}
                 </div>
                 <div className={styles.footerDiv}>
