@@ -1,8 +1,11 @@
+import { useState, useEffect } from "react";
 import styles from "./MineSweeper.module.css"
 
 function MineSweeper(){
 
     var lost = false;
+    const [seconds, setSeconds] = useState(0);
+    const [running, setRunning] = useState(true);
 
     let tiles = [];
     for(let i = 0; i < 81; i++){
@@ -95,23 +98,32 @@ function MineSweeper(){
 
     }
 
+    useEffect(() => {
+        let interval;
+        if (running) {
+            interval = setInterval(() => {
+                setSeconds((prev) => prev + 1);
+            }, 1000);
+        }
+        return () => clearInterval(interval);
+    }, [running]);
+
 
     return(
 
         <>
             <div className={styles.mainDiv}>
                 <div className={styles.headerDiv}>
-                    <div className={styles.flagsDiv}>a</div>
-                    <div className={styles.statDiv}>b</div>
-                    <div className={styles.timerDiv}>c</div>
+                    <div className={styles.flagsDiv}>10</div>
+                    <div className={styles.statDiv} onClick={() => {window.location.reload(true);}}>😊</div>
+                    <div className={styles.timerDiv}>
+                        {seconds} Seconds
+                    </div>
                 </div>
                 <div className={styles.subDiv}>
                     {tiles.map((obj, index) => (
                     <button key={index} className={styles.tile} onClick={checkMine} onContextMenu={() => console.log("i")}>{obj}</button>
                     ))}
-                </div>
-                <div className={styles.footerDiv}>
-                    <button className={styles.resetButton} onClick={() => {window.location.reload(true);}}>Reset</button>
                 </div>
             </div>
         </>
