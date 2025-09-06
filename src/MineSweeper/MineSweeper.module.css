@@ -7,11 +7,6 @@
     position: relative;
 }
 
-.headerDiv{
-    background-color: azure;
-    height: 150px;
-}
-
 .subDiv{
     background-color: cadetblue;
     margin: auto;
@@ -39,34 +34,37 @@
     align-items: center;
     justify-content: center;
     background-color: cornflowerblue;
-}
+    height: 150px;
 
-.flagsDiv{
-    background-color: rgb(71, 136, 136);
-    width: 30%;
-    height: 70%;
-    margin: 3%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .flagsDiv{
+        background-color: rgb(71, 136, 136);
+        width: 30%;
+        height: 70%;
+        margin: 3%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.statDiv{
-    background-color: rgb(138, 116, 77);
-    width: 30%;
-    height: 70%;
-    margin: 3%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .statDiv{
+        background-color: rgb(138, 116, 77);
+        width: 30%;
+        height: 70%;
+        margin: 3%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.timerDiv{
-    background-color: rgb(98, 66, 98);
-    width: 30%;
-    height: 70%;
-    margin: 3%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .timerDiv{
+        background-color: rgb(98, 66, 98);
+        width: 30%;
+        height: 70%;
+        margin: 3%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
 }

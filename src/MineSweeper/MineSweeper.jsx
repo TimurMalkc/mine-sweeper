@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./MineSweeper.module.css"
 
 function MineSweeper(){
 
     var lost = false;
-    const [seconds, setSeconds] = useState(0);
-    const [running, setRunning] = useState(true);
+    var remainingTiles = 81;
+    const statRef = useRef(null);
+    const tileRef = useRef(null);
 
-    let tiles = [];
+    let tiles = [];     
     for(let i = 0; i < 81; i++){
         tiles[i] = i;        
     }
@@ -77,36 +78,18 @@ function MineSweeper(){
                 event.target.style.backgroundColor = "red";
                 event.target.textContent = "💣";
                 event.target.disabled = "true";
+                statRef.current.textContent = "😭";
                 lost = true;
             }else{
                 event.target.disabled = "true";
                 event.target.style.border = "none";
                 event.target.style.color = "white";
                 event.target.textContent = mineCount;
+                remainingTiles--;
+                tileRef.current.textContent = remainingTiles;
             }   
         } 
     }
-
-    function updateClock(){
-        const startTime = new Date().getTime();
-
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = startTime - now;
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        })
-
-    }
-
-    useEffect(() => {
-        let interval;
-        if (running) {
-            interval = setInterval(() => {
-                setSeconds((prev) => prev + 1);
-            }, 1000);
-        }
-        return () => clearInterval(interval);
-    }, [running]);
 
 
     return(
@@ -114,10 +97,9 @@ function MineSweeper(){
         <>
             <div className={styles.mainDiv}>
                 <div className={styles.headerDiv}>
-                    <div className={styles.flagsDiv}>10</div>
-                    <div className={styles.statDiv} onClick={() => {window.location.reload(true);}}>😊</div>
-                    <div className={styles.timerDiv}>
-                        {seconds} Seconds
+                    <div className={styles.flagsDiv} ref={tileRef}>{remainingTiles}</div>
+                    <div className={styles.statDiv} ref={statRef}>😊</div>
+                    <div className={styles.timerDiv} onClick={() => {window.location.reload(true);}}>🔄️
                     </div>
                 </div>
                 <div className={styles.subDiv}>
