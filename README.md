@@ -1,4 +1,4 @@
-# react-projects
+# Mine Sweeper
 Mine sweeper game using React
 
 *Tech Used:* JavaScript, CSS, React
