@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import styles from "./MineSweeper.module.css"
 
 function MineSweeper(){
@@ -12,6 +12,9 @@ function MineSweeper(){
     for(let i = 0; i < 81; i++){
         tiles[i] = i;        
     }
+    var newTiles = tiles.map((obj, index) => (
+                        <button key={index} className={styles.tile} onClick={checkMine}>{obj}</button>
+                    ));
 
     let mines = [];
     while(mines.length < 10){
@@ -69,8 +72,6 @@ function MineSweeper(){
         return count;
     }
     
-    console.log(mines);
-    
     function checkMine(event){
         let mineCount = checkArea(event.target.textContent);
         if(!lost){
@@ -103,9 +104,7 @@ function MineSweeper(){
                     </div>
                 </div>
                 <div className={styles.subDiv}>
-                    {tiles.map((obj, index) => (
-                    <button key={index} className={styles.tile} onClick={checkMine} onContextMenu={() => console.log("i")}>{obj}</button>
-                    ))}
+                    {...newTiles}
                 </div>
             </div>
         </>

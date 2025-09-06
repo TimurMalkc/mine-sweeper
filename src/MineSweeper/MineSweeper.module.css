@@ -3,26 +3,23 @@
     margin-top: 20px;
     width: 550px;
     height: 650px;
-    background-color: aquamarine;
+    background-color: rgb(44, 104, 191); 
     position: relative;
 }
 
 .subDiv{
-    background-color: cadetblue;
     margin: auto;
     width: 450px;
     height: 450px;
-    
-    
 }
 
 .tile{
     height: 50px;
     width: 50px;
     border-color: black;
-    background-color: #1a1a1a;
-    color: #1a1a1a;
-    font-size: 1em;
+    background-color: rgb(26,26,26);
+    color: rgb(26,26,26);
+    font-size: 1.5em;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
@@ -33,38 +30,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: cornflowerblue;
+    background-color: rgb(68, 47, 185); 
     height: 150px;
+}
 
-    .flagsDiv{
-        background-color: rgb(71, 136, 136);
-        width: 30%;
-        height: 70%;
-        margin: 3%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.flagsDiv, .statDiv, .timerDiv{
+    background-color: rgb(224, 185, 72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 70%;
+    margin: 3%;
+    font-size: 200%;
+    user-select: none;
+}
 
-    .statDiv{
-        background-color: rgb(138, 116, 77);
-        width: 30%;
-        height: 70%;
-        margin: 3%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.timerDiv:active{
+    background-color: rgb(54, 32, 54);
+}
 
-    .timerDiv{
-        background-color: rgb(98, 66, 98);
-        width: 30%;
-        height: 70%;
-        margin: 3%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-
+.timerDiv:hover{
+    cursor: pointer;
 }
