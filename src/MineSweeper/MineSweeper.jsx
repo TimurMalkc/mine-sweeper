@@ -1,13 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styles from "./MineSweeper.module.css"
 
 function MineSweeper(){
 
-    var lost = false;
-    var remainingTiles = 81;
+    const [remainingTiles, setRemainingTiles] = useState(81);
+    const [lost, setLost] = useState(false);
+    const [stat, setStat] = useState("😊");
     const statRef = useRef(null);
     const tileRef = useRef(null);
-
+    
     let tiles = [];     
     for(let i = 0; i < 81; i++){
         tiles[i] = i;        
@@ -79,15 +80,14 @@ function MineSweeper(){
                 event.target.style.backgroundColor = "red";
                 event.target.textContent = "💣";
                 event.target.disabled = "true";
-                statRef.current.textContent = "😭";
-                lost = true;
+                setStat("😭");
+                setLost(true);
             }else{
                 event.target.disabled = "true";
                 event.target.style.border = "none";
                 event.target.style.color = "white";
                 event.target.textContent = mineCount;
-                remainingTiles--;
-                tileRef.current.textContent = remainingTiles;
+                setRemainingTiles(prev => prev - 1);
             }   
         } 
     }
@@ -99,7 +99,7 @@ function MineSweeper(){
             <div className={styles.mainDiv}>
                 <div className={styles.headerDiv}>
                     <div className={styles.flagsDiv} ref={tileRef}>{remainingTiles}</div>
-                    <div className={styles.statDiv} ref={statRef}>😊</div>
+                    <div className={styles.statDiv} ref={statRef}>{stat}</div>
                     <div className={styles.timerDiv} onClick={() => {window.location.reload(true);}}>🔄️
                     </div>
                 </div>
