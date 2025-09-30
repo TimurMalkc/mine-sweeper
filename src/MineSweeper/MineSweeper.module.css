@@ -4,13 +4,40 @@
     width: 550px;
     height: 650px;
     background-color: rgb(44, 104, 191); 
-    position: relative;
 }
 
 .subDiv{
     margin: auto;
     width: 450px;
     height: 450px;
+}
+
+.headerDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(68, 47, 185); 
+    height: 150px;
+}
+
+.remainingDiv, .statDiv, .resetDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(224, 185, 72);
+    width: 30%;
+    height: 70%;
+    margin: 3%;
+    font-size: 200%;
+    user-select: none;
+}
+
+.resetDiv:active{
+    background-color: rgb(212, 155, 70);
+}
+
+.resetDiv:hover{
+    cursor: pointer;
 }
 
 .tile{
@@ -24,32 +51,4 @@
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
-}
-
-.headerDiv{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(68, 47, 185); 
-    height: 150px;
-}
-
-.flagsDiv, .statDiv, .timerDiv{
-    background-color: rgb(224, 185, 72);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-    height: 70%;
-    margin: 3%;
-    font-size: 200%;
-    user-select: none;
-}
-
-.timerDiv:active{
-    background-color: rgb(54, 32, 54);
-}
-
-.timerDiv:hover{
-    cursor: pointer;
 }

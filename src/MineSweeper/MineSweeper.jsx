@@ -1,14 +1,13 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import styles from "./MineSweeper.module.css"
 
 function MineSweeper(){
 
-    const [remainingTiles, setRemainingTiles] = useState(81);
-    const [lost, setLost] = useState(false);
-    const [stat, setStat] = useState("😊");
-    const statRef = useRef(null);
+    var lost = false;
+    var remainingTiles = 81; 
+    const statRef = useRef(null); 
     const tileRef = useRef(null);
-    
+
     let tiles = [];     
     for(let i = 0; i < 81; i++){
         tiles[i] = i;        
@@ -28,10 +27,7 @@ function MineSweeper(){
     function checkNum(num){
         let column = (num) % 9;
         let row = Math.floor((num) / 9);
-        let endColumn;
-        let startColumn;
-        let endRow;
-        let startRow;
+        let endColumn, startColumn, endRow, startRow;
 
         if(column+1 > 8){
             endColumn = column;
@@ -74,33 +70,32 @@ function MineSweeper(){
     }
     
     function checkMine(event){
-        let mineCount = checkArea(event.target.textContent);
         if(!lost){
             if(mines.includes(Number(event.target.textContent))){
                 event.target.style.backgroundColor = "red";
                 event.target.textContent = "💣";
                 event.target.disabled = "true";
-                setStat("😭");
-                setLost(true);
+                statRef.current.textContent = "😭"; 
+                lost = true;
             }else{
                 event.target.disabled = "true";
                 event.target.style.border = "none";
                 event.target.style.color = "white";
-                event.target.textContent = mineCount;
-                setRemainingTiles(prev => prev - 1);
+                event.target.textContent = checkArea(event.target.textContent);
+                remainingTiles--;
+                tileRef.current.textContent = remainingTiles;
             }   
         } 
     }
 
 
     return(
-
         <>
             <div className={styles.mainDiv}>
                 <div className={styles.headerDiv}>
-                    <div className={styles.flagsDiv} ref={tileRef}>{remainingTiles}</div>
-                    <div className={styles.statDiv} ref={statRef}>{stat}</div>
-                    <div className={styles.timerDiv} onClick={() => {window.location.reload(true);}}>🔄️
+                    <div className={styles.remainingDiv} ref={tileRef}>{remainingTiles}</div>
+                    <div className={styles.statDiv} ref={statRef}>😊</div>
+                    <div className={styles.resetDiv} onClick={() => {window.location.reload(true);}}>🔄️
                     </div>
                 </div>
                 <div className={styles.subDiv}>
